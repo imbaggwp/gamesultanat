@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Султанат — Имперская монополия</title>
+<style>
+:root{--bg:#101711;--panel:#1b261e;--panel2:#222f24;--line:#3e503a;--gold:#d9b66f;--gold2:#f3dca0;--text:#f1ead9;--muted:#a7b39f;--p1:#dfb65f;--p2:#83b7cf;--danger:#bf6653}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at top,#2a3b2c,#101711 65%);color:var(--text);font:14px/1.4 system-ui,-apple-system,Segoe UI,sans-serif}button,input,select{font:inherit}button{cursor:pointer;font-weight:750;border:1px solid #8c754a;border-radius:9px;padding:10px 13px;background:linear-gradient(#e1bf78,#b88d48);color:#211b10;transition:.15s}button:hover{filter:brightness(1.1);transform:translateY(-1px)}button:disabled{opacity:.4;cursor:not-allowed;transform:none}.secondary{background:linear-gradient(#354638,#25342a);border-color:#50634b;color:#e9eadb}.danger{background:linear-gradient(#b96954,#8c4034);border-color:#d38a70;color:#fff3e5}.app{max-width:1450px;margin:auto;padding:12px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}.brand{display:flex;align-items:center;gap:10px}.crest{width:48px;height:48px;display:grid;place-items:center;border:2px solid var(--gold);border-radius:15px;background:linear-gradient(145deg,#42553a,#172219);color:var(--gold2);font-size:27px}.brand h1{font:700 24px Georgia,serif;letter-spacing:1.4px;margin:0}.sub{font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}.topstats{display:flex;gap:7px;flex-wrap:wrap}.topstat{border:1px solid var(--line);background:#19241b;border-radius:9px;padding:7px 11px;min-width:90px}.topstat small{display:block;font-size:10px;color:var(--muted)}.topstat b{font-size:16px;color:var(--gold2)}.layout{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(290px,.8fr);gap:12px}.panel{border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,#202c23f5,#141d17f5);box-shadow:0 14px 38px #0003;overflow:hidden}.head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid #354432}.head h2{font:700 18px Georgia,serif;margin:0}.eyebrow{font-size:10px;color:var(--gold);letter-spacing:1.8px;text-transform:uppercase}.pill{font-size:11px;color:#e5d5a9;border:1px solid #63583b;background:#20271d;padding:5px 9px;border-radius:20px;white-space:nowrap}.boardwrap{padding:10px;background:radial-gradient(ellipse at center,#273a2b 0%,#17231a 72%);background-image:radial-gradient(#d8b56e12 1px,transparent 1px),radial-gradient(ellipse at center,#273a2b 0%,#17231a 72%);background-size:18px 18px,auto}.board{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));grid-template-rows:repeat(7,minmax(66px,1fr));gap:5px;min-height:580px;position:relative;padding:7px;border-radius:15px;background:linear-gradient(135deg,#d8b56e,#6f5830 24%,#263629 25%,#18231a 75%,#b99a5a);box-shadow:inset 0 0 0 1px #e7d39a40,0 8px 20px #0003}.tile{position:relative;min-width:0;overflow:hidden;border:1px solid #6a7956;border-radius:9px;background:linear-gradient(150deg,#3a4b37,#263426 62%,#1d2a20);padding:6px 3px;box-shadow:inset 0 1px 0 #ffffff12,0 2px 4px #0003;display:flex;flex-direction:column;align-items:center;justify-content:space-between;text-align:center;cursor:pointer;transition:.15s}.tile:hover{filter:brightness(1.15);border-color:var(--gold)}.tile .band{position:absolute;top:0;left:0;right:0;height:5px;background:var(--band,#ad8a51)}.tile .ico{display:grid;place-items:center;width:100%;height:31px;margin-top:4px;filter:drop-shadow(0 3px 2px #0005)}.tile .ico svg{width:34px;height:32px;overflow:visible}.tile .nm{font-family:Georgia,serif;font-size:10px;line-height:1.12;font-weight:800;color:#f1e7d0;overflow-wrap:anywhere}.tile .price{font-size:9px;color:#d9bd82}.tile .owners{display:flex;gap:2px;position:absolute;top:5px;left:4px;font-size:12px;z-index:2}.minitoken{display:grid;place-items:center;width:14px;height:14px;border-radius:50%;font-size:9px;border:1px solid #f0d99f;background:#4b3d22;color:#ffe4a0;box-shadow:0 1px 4px #0008}.minitoken.blue{background:#203b46;color:#b8e3f2;border-color:#83b7cf}.tile .level{font-size:9px;color:#b8d89b}.tile.current{outline:2px solid #ffe5a0;outline-offset:-2px;box-shadow:0 0 13px #e2c77955}.tile.p1owned{box-shadow:inset 0 0 0 2px var(--p1)}.tile.p2owned{box-shadow:inset 0 0 0 2px var(--p2)}.center{grid-column:2/7;grid-row:2/7;border:2px solid #b99b5d;border-radius:14px;background:radial-gradient(circle at center,#40563b 0%,#253727 52%,#17241b 100%);box-shadow:inset 0 0 0 5px #d8b56e18,inset 0 0 45px #0006;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:14px;position:relative;overflow:hidden}.center:before,.center:after{content:"";position:absolute;border:1px solid #c2a45a30;transform:rotate(45deg);width:75%;height:75%;pointer-events:none}.center:after{width:52%;height:52%;border-color:#c2a45a20}.center>*{z-index:1}.center .crescent{font-size:43px;color:var(--gold2)}.center h2{font:700 clamp(20px,3vw,30px) Georgia,serif;color:var(--gold2);margin:4px}.center p{max-width:340px;font-size:11px;color:#c1cbb8;margin:4px 0 12px}.players{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.playerchip{border:1px solid #536346;background:#17231a;border-radius:8px;padding:6px 9px;font-size:11px}.playerchip b{display:block}.playerchip.active{border-color:var(--gold2);box-shadow:0 0 0 1px #d9b66f55}.side{display:flex;flex-direction:column;gap:12px}.turnpanel{padding:12px}.activeplayer{display:flex;align-items:center;gap:10px;background:#172119;border:1px solid #3b4b37;border-radius:10px;padding:10px;margin-bottom:10px}.token{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;font-size:22px;background:#463b23;border:1px solid var(--p1)}.token.p2{background:#203b46;border-color:var(--p2)}.activeplayer .desc{flex:1}.activeplayer b{display:block}.activeplayer small{color:var(--muted);font-size:11px}.moneygrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:10px 0}.moneybox{padding:9px;border:1px solid #334431;background:#18231b;border-radius:9px}.moneybox small{display:block;color:var(--muted);font-size:10px}.moneybox b{font-size:17px;color:var(--gold2)}.actiongrid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.actiongrid button{font-size:12px;padding:10px 6px}.tabs{display:flex;gap:5px;flex-wrap:wrap;padding:10px 10px 0}.tab{font-size:11px;padding:7px 9px;border:1px solid #354632;background:#172119;color:#c5cfbd;border-radius:7px}.tab.active{background:#d8b56e;color:#211b10}.view{padding:10px;max-height:280px;overflow:auto}.hidden{display:none!important}.log{display:flex;flex-direction:column;gap:6px}.entry{font-size:11px;padding:7px 8px;border-left:2px solid #9c8048;background:#172119;color:#c9d0c1;border-radius:0 6px 6px 0}.entry b{color:var(--gold2)}.prop{position:relative;display:flex;align-items:center;gap:9px;padding:10px 9px 10px 12px;background:linear-gradient(115deg,#26372a,#172119 72%);border:1px solid #46583d;border-radius:10px;margin-bottom:8px;box-shadow:inset 0 1px 0 #ffffff0b,0 4px 12px #0002;overflow:hidden}.prop:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--propband,#b99a5a)}.prop .ico{display:grid;place-items:center;flex:0 0 48px;height:52px;border:1px solid #6e5b36;border-radius:9px;background:radial-gradient(circle at 50% 20%,#5a5736,#243327 75%);filter:drop-shadow(0 2px 2px #0004)}.prop .ico svg{width:42px;height:44px}.prop .desc{flex:1;min-width:0}.prop b{display:block;font:700 13px Georgia,serif;color:#f0d99f;font-size:13px}.prop small{display:block;font-size:10px;color:var(--muted);line-height:1.45;margin-top:3px}.prop button{font-size:10px;padding:6px;white-space:nowrap}.notice{padding:9px 12px;border-top:1px solid #354432;color:#aab6a2;font-size:11px}.overlay{position:fixed;inset:0;background:#000b;z-index:10;display:grid;place-items:center;padding:16px}.modal{width:min(470px,100%);border:1px solid #947b4b;border-radius:16px;background:#1c281f;padding:20px;box-shadow:0 20px 70px #000b}.modal h2{font:700 24px Georgia,serif;color:var(--gold2);margin:0 0 8px}.modal p{color:#c8d0c0;font-size:13px}.modal .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.modal input,.modal select{width:100%;padding:10px;border:1px solid #566448;border-radius:8px;background:#111a13;color:var(--text);margin:4px 0 10px}.modal label{display:block;color:#c7cfbe;font-size:12px}.toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:30;background:#172119;border:1px solid var(--gold);color:#f5e8c2;padding:10px 14px;border-radius:10px;box-shadow:0 8px 30px #0008;max-width:90vw;text-align:center}.footer{text-align:center;color:#71806d;font-size:10px;padding:13px 0 2px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.side{display:grid;grid-template-columns:1fr 1fr}.side .panel:last-child{grid-column:1/-1}.board{min-height:520px}}
+@media(max-width:560px){.prop{gap:6px;flex-wrap:wrap}.prop .desc{flex:1 1 calc(100% - 60px)}.prop button{margin-left:3px}.app{padding:7px}.brand h1{font-size:19px}.crest{width:40px;height:40px}.topstats{width:100%;display:grid;grid-template-columns:repeat(3,1fr)}.topstat{min-width:0;padding:6px}.topstat b{font-size:14px}.boardwrap{padding:5px}.board{gap:3px;min-height:420px;grid-template-rows:repeat(7,minmax(42px,1fr))}.tile{padding:4px 2px}.tile .ico{font-size:16px}.tile .nm{font-size:8px}.tile .price{font-size:8px}.center{padding:7px}.center .crescent{font-size:30px}.center p{font-size:9px;margin-bottom:7px}.side{display:flex}.head h2{font-size:16px}}
+
+/* Premium board-game finish: engraved gold, enamel tiles, and richer property cards */
+.board{background:linear-gradient(135deg,#d9bd79 0%,#80683b 12%,#253629 13%,#17231a 86%,#b99a5a 87%,#e0c47d 100%);padding:8px;box-shadow:inset 0 0 0 1px #f2dfa3a8,inset 0 0 0 4px #111b14,0 12px 30px #0007}
+.boardwrap{background-color:#17231a;background-image:radial-gradient(#d8b56e18 1px,transparent 1px),radial-gradient(ellipse at center,#304832 0%,#17231a 74%);background-size:14px 14px,auto}
+.tile{background:linear-gradient(145deg,#3d523c 0%,#293a2c 47%,#1b291f 100%);border-color:#7f875b;box-shadow:inset 0 1px 0 #fff2,inset 0 -9px 16px #09120c55,0 3px 7px #0005}
+.tile:after{content:"";position:absolute;inset:5px;border:1px solid #d7bd7440;border-radius:5px;pointer-events:none}
+.tile .ico{height:35px;margin-top:5px;position:relative;z-index:1}
+.tile .ico svg{width:38px;height:36px;filter:drop-shadow(0 2px 2px #0008);transition:transform .2s}
+.tile:hover .ico svg{transform:translateY(-2px) scale(1.06)}
+.tile .nm{position:relative;z-index:1;text-shadow:0 1px 2px #0009;letter-spacing:.05px}
+.tile .price{position:relative;z-index:1;border:1px solid #d7bd7430;border-radius:4px;padding:1px 4px;background:#101a1270;color:#e8cf8c}
+.tile .band{height:6px;box-shadow:0 1px 3px #0008}
+.tile.current{outline:2px solid #ffe6a0;box-shadow:inset 0 0 0 2px #fff0a8,0 0 18px #e2c7798c;animation:tileGlow 2.4s ease-in-out infinite}
+@keyframes tileGlow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.12)}}
+.tile.p1owned:before,.tile.p2owned:before{content:"";position:absolute;inset:3px;border:1px solid var(--p1);border-radius:6px;pointer-events:none;z-index:1}
+.tile.p2owned:before{border-color:var(--p2)}
+.center{background:radial-gradient(ellipse at 50% 42%,#3a5538 0%,#263b2b 45%,#17241b 100%);border:2px solid #c7a45e;box-shadow:inset 0 0 0 4px #e8d08a16,inset 0 0 45px #0008,0 4px 15px #0005}
+.center:before{width:82%;height:82%;border:1px solid #d8b56e35;transform:rotate(45deg)}
+.center:after{width:60%;height:60%;border:1px solid #d8b56e25;transform:rotate(45deg)}
+.center .map-art{position:absolute;inset:4% 6% 18%;width:88%;height:76%;opacity:.3;z-index:0;pointer-events:none}
+.center .center-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center}
+.center .crest-small{width:50px;height:50px;display:grid;place-items:center;border:1px solid #dfc276;border-radius:50%;background:radial-gradient(circle,#52643d,#1b2a1e);box-shadow:0 0 0 4px #d9b66f10,0 4px 15px #0004;font-size:29px;color:#f3dca0}
+.center .center-kicker{font-size:9px;letter-spacing:2.5px;color:#d6bd7b;text-transform:uppercase;margin-top:6px}
+.center h2{letter-spacing:2px;text-shadow:0 2px 10px #0008;margin:3px 0}
+.center .center-desc{max-width:310px;font-size:10px;line-height:1.5;color:#d0d8c8;margin:2px 0 10px}
+.center .players{gap:6px}
+.playerchip{backdrop-filter:blur(4px);background:#101a12c9;border-color:#8e7950;padding:7px 10px;box-shadow:0 3px 8px #0003}
+.playerchip.active{background:#293b2b;border-color:#f1d891;box-shadow:0 0 0 1px #d9b66f66,0 4px 12px #0005}
+.prop{background:linear-gradient(115deg,#304332,#1a271d 66%,#172119);border-color:#586747;min-height:76px}
+.prop .ico{background:radial-gradient(circle at 50% 20%,#667047,#26382a 72%);border-color:#9c824b;box-shadow:inset 0 1px 0 #fff2,0 4px 10px #0004}
+.prop .ico svg{filter:drop-shadow(0 2px 2px #0008)}
+.prop .prop-meta{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+.prop .meta-chip{font-size:9px;border:1px solid #8c75453b;background:#101a1280;border-radius:5px;padding:2px 5px;color:#d5d9c8;white-space:nowrap}
+.prop .meta-chip strong{color:#efd58f;font-weight:700}
+@media(max-width:560px){.center .map-art{inset:2% 2% 24%;width:96%;height:75%;opacity:.24}.center .crest-small{width:35px;height:35px;font-size:21px}.center .center-kicker{font-size:7px;letter-spacing:1.5px}.center .center-desc{font-size:8px;margin:2px 0 5px}.playerchip{padding:4px 5px;font-size:9px}.playerchip b{font-size:9px}.tile .ico svg{width:30px;height:29px}.prop .ico{flex-basis:43px;height:48px}.prop .ico svg{width:38px;height:40px}}
+
+</style></head>
+<body>
+<div class="app">
+<header class="top">
+ <div class="brand"><div class="crest">☾</div><div><h1>СУЛТАНАТ</h1><div class="sub">Имперская монополия</div></div></div>
+ <div class="topstats"><div class="topstat"><small>Ход</small><b id="turnStat">1</b></div><div class="topstat"><small>Режим</small><b id="modeStat">На двоих</b></div><div class="topstat"><small>Победа</small><b id="goalStat">Казна</b></div></div>
+</header>
+<div class="layout">
+<main class="panel">
+ <div class="head"><div><div class="eyebrow">Карта владений</div><h2>Торговые пути империи</h2></div><span class="pill" id="roundPill">Раунд 1</span></div>
+ <div class="boardwrap"><div class="board" id="board"></div></div>
+ <div class="notice">Покупай города, собирай пошлины, развивай рынки и следи за казной соперника. Все решения принимаются по очереди.</div>
+</main>
+<aside class="side">
+<section class="panel"><div class="head"><div><div class="eyebrow">Правитель у власти</div><h2>Управление ходом</h2></div><span class="pill" id="turnPill">Игрок 1</span></div>
+ <div class="turnpanel">
+  <div class="activeplayer" id="activePlayer"><div class="token" id="token">👑</div><div class="desc"><b id="playerName">Игрок 1</b><small id="playerHint">Ваш ход: бросьте кости</small></div></div>
+  <div class="moneygrid">
+   <div class="moneybox"><small>Казна</small><b id="cash">1000 д.</b></div><div class="moneybox"><small>Владения</small><b id="landCount">0</b></div>
+   <div class="moneybox"><small>Доход за ход</small><b id="income">0 д.</b></div><div class="moneybox"><small>Репутация</small><b id="rep">60</b></div>
+  </div>
+  <div class="actiongrid">
+   <button id="rollBtn">🎲 Бросить кости</button><button id="endBtn" class="secondary" disabled>⏭ Завершить ход</button>
+   <button id="upgradeBtn" class="secondary">🏪 Улучшить город</button><button id="charityBtn" class="secondary">🌙 Благотворительность</button>
+   <button id="tradeBtn" class="secondary">🐪 Торговая миссия</button><button id="marketBtn" class="secondary">⚖️ Торговый рынок</button><button id="routeBtn" class="secondary">🧭 Караванный маршрут</button><button id="dealBtn" class="secondary">🤝 Сделка с соперником</button><button id="onlineBtn" class="secondary">📱 Игра на двух телефонах</button><button id="newBtn" class="danger">↻ Новая партия</button>
+  </div>
+ </div>
+</section>
+<section class="panel"><div class="tabs"><button class="tab active" data-tab="log">Летопись</button><button class="tab" data-tab="lands">Владения</button><button class="tab" data-tab="rules">Правила</button></div>
+ <div class="view" id="logView"><div class="log" id="log"></div></div>
+ <div class="view hidden" id="landsView"><div id="lands"></div></div>
+ <div class="view hidden" id="rulesView"><div class="entry">• Каждый игрок начинает с 1000 динаров.<br>• При попадании на свободный город можно купить его.<br>• Если город принадлежит сопернику — заплати пошлину.<br>• Улучшай свои города рынками, чтобы увеличить пошлину.<br>• Благотворительность повышает репутацию, но стоит денег.<br>• Владение всеми городами региона повышает пошлины на 50%.<br>• Уникальные города дают особые экономические преимущества.<br>• Через «Сделка с соперником» можно обменивать города и динары.<br>• Продажа возвращает часть стоимости; залог даёт деньги, но отключает пошлину.<br>• Игрок проигрывает, если не может оплатить долг.<br>• В локальном режиме передавайте устройство друг другу по очереди.<br>• В режиме «Два телефона» подключитесь к одной комнате через код приглашения; нужен интернет.</div></div>
+</section>
+</aside>
+</div><div class="footer">СУЛТАНАТ · Локальная и сетевая игра · Прогресс сохраняется автоматически</div></div>
+<div id="modalRoot"></div>
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+<script>
+(()=>{
+const $=id=>document.getElementById(id);
+const regions={Iraq:'#b78b4b',Sham:'#6f9a67',Egypt:'#b36b54',Andalus:'#9a83bd',East:'#6798a6',Trade:'#c09a5d',Hejaz:'#c4a75e'};
+const spaces=[
+{name:'Дворец султана',icon:'🏰',type:'start',desc:'Столица державы. Каждый проход приносит 120 динаров.'},
+{name:'Багдад',icon:'🕌',type:'land',cost:180,rent:28,region:'Ирак',band:'#b78b4b',special:'wisdom',desc:'Город учёных, ремесленников и торговцев. Дом мудрости: посещение собственного города приносит дополнительный доход.'},
+{name:'Караван-сарай',icon:'🐪',type:'event',desc:'Случайное событие на торговом пути.'},
+{name:'Басра',icon:'⚓',type:'land',cost:150,rent:22,region:'Ирак',band:'#b78b4b',special:'port',desc:'Порт на морском торговом маршруте. Порт: усиливает прибыль торговых миссий.'},
+{name:'Пошлина',icon:'🪙',type:'tax',amount:70,desc:'Взнос на содержание дорог и мостов.'},
+{name:'Дамаск',icon:'🌿',type:'land',cost:210,rent:32,region:'Шам',band:'#6f9a67',special:'craft',desc:'Сады и мастерские знаменитых ремесленников. Ремесленный центр: рынки здесь дешевле развивать.'},
+{name:'Оазис',icon:'🌴',type:'rest',desc:'Передышка в тени пальм: репутация растёт.'},
+{name:'Алеппо',icon:'🏘️',type:'land',cost:190,rent:27,region:'Шам',band:'#6f9a67',desc:'Перекрёсток караванных дорог.'},
+{name:'Крепость',icon:'🛡️',type:'event',desc:'Проверка гарнизона и неожиданные вести.'},
+{name:'Каир',icon:'🕌',type:'land',cost:260,rent:39,region:'Египет',band:'#b36b54',special:'granary',desc:'Богатый город на берегах Нила. Зернохранилища: доход от ресурсных клеток увеличивается.'},
+{name:'Нил',icon:'🌊',type:'resource',desc:'Плодородные земли приносят доход.'},
+{name:'Александрия',icon:'⛵',type:'land',cost:230,rent:34,region:'Египет',band:'#b36b54',special:'port',desc:'Морские ворота и крупный порт. Порт: усиливает прибыль торговых миссий.'},
+{name:'Пошлина',icon:'🪙',type:'tax',amount:90,desc:'Сбор в государственную казну.'},
+{name:'Кордова',icon:'🌙',type:'land',cost:300,rent:45,region:'Аль-Андалус',band:'#9a83bd',special:'culture',desc:'Город садов, библиотек и архитектуры. Культурная столица: повышает репутацию при посещении собственного города.'},
+{name:'Совет учёных',icon:'📜',type:'event',desc:'Знание и дипломатия укрепляют государство.'},
+{name:'Гранада',icon:'🏯',type:'land',cost:270,rent:40,region:'Аль-Андалус',band:'#9a83bd',desc:'Крепость на холмах и искусные мастера.'},
+{name:'Пустынный переход',icon:'🏜️',type:'hazard',desc:'Песчаная буря задерживает караваны.'},
+{name:'Самарканд',icon:'🧿',type:'land',cost:250,rent:37,region:'Мавераннахр',band:'#6798a6',special:'silk',desc:'Шёлковый путь и знаменитые купола. Центр шёлковой торговли: усиливает доход от ресурсных клеток.'},
+{name:'Шёлковый путь',icon:'🧵',type:'resource',desc:'Торговые связи приносят прибыль.'},
+{name:'Бухара',icon:'🕌',type:'land',cost:220,rent:33,region:'Мавераннахр',band:'#6798a6',desc:'Центр торговли, ремесла и образования.'},
+{name:'Дипломатия',icon:'🤝',type:'event',desc:'Укрепите связи с соседними правителями.'},
+{name:'Большой базар',icon:'🏪',type:'land',cost:320,rent:48,region:'Торговля',band:'#c09a5d',desc:'Доходный квартал международных купцов.'},
+{name:'Дом милосердия',icon:'🌙',type:'charity',desc:'Благотворительность укрепляет репутацию.'},
+{name:'Путь паломников',icon:'🕋',type:'land',cost:350,rent:50,region:'Хиджаз',band:'#c4a75e',special:'pilgrimage',desc:'Важный город на пути паломников и караванов. Владение Хиджазом усиливает эффект благотворительности.'}
+];
+const goods=[{id:'silk',name:'Шёлк',base:45},{id:'spice',name:'Специи',base:35},{id:'grain',name:'Зерно',base:18},{id:'metal',name:'Металл',base:28},{id:'dye',name:'Красители',base:32}];
+const defaultState=()=>({mode:'local2',players:[{name:'Игрок 1',cash:1000,rep:60,pos:0,owned:[],goods:{}},{name:'Игрок 2',cash:1000,rep:60,pos:0,owned:[],goods:{}}],owner:{},levels:{},turn:0,round:1,rolled:false,finished:false,log:[],lastRoll:null,mortgages:[],marketPrices:Object.fromEntries(goods.map(g=>[g.id,g.base])),routes:[]});
+let S;try{S=JSON.parse(localStorage.getItem('sultanatMonopoly'))||defaultState()}catch(e){S=defaultState()}
+S.mortgages=S.mortgages||[];S.routes=S.routes||[];S.marketPrices=S.marketPrices||Object.fromEntries(goods.map(g=>[g.id,g.base]));S.players.forEach(p=>{p.goods=p.goods||{}});
+let peer=null, peerConn=null, onlineRole=S.mode==='online'?(Number(localStorage.getItem('sultanatOnlineRole'))===1?1:0):null, applyingRemote=false, roomCode=localStorage.getItem('sultanatRoomCode')||'';
+function canAct(){return S.mode!=='online'||(onlineRole===S.turn&&!!peerConn&&peerConn.open)}
+function sendState(){if(!peerConn||!peerConn.open||applyingRemote)return;try{peerConn.send({type:'state',state:S})}catch(e){}}
+function save(){try{localStorage.setItem('sultanatMonopoly',JSON.stringify(S))}catch(e){} if(!applyingRemote)sendState()}
+function note(t){S.log.unshift(t);S.log=S.log.slice(0,35);renderLog();save()}
+function cash(p){return S.players[p].cash}
+function fmt(n){return Math.floor(n).toLocaleString('ru-RU')}
+function rent(i){
+ const owner=S.owner[i],s=spaces[i];
+ if(owner===undefined)return s.rent;
+ const sameRegion=spaces.map((x,k)=>({x,k})).filter(o=>o.x.type==='land'&&o.x.region===s.region);
+ const fullSet=sameRegion.length>1&&sameRegion.every(o=>S.owner[o.k]===owner);
+ const mortgage=(S.mortgages||[]).includes(i);
+ return mortgage?0:Math.floor(s.rent*(1+(S.levels[i]||0)*.8)*(fullSet?1.5:1));
+}
+function income(p){return S.players[p].owned.reduce((n,i)=>n+(S.levels[i]||0)*8,0)+(S.routes||[]).filter(r=>r.owner===p).reduce((n,r)=>n+routeYield(r),0)}
+function routeYield(r){const a=spaces[r.from],b=spaces[r.to];let v=25+(S.levels[r.from]||0)*10+(S.levels[r.to]||0)*10;if(a.special==='port'||b.special==='port')v=Math.floor(v*1.2);if(a.special==='silk'||b.special==='silk')v+=10;return v}
+function refreshMarket(){S.marketPrices=S.marketPrices||{};goods.forEach(g=>{const old=S.marketPrices[g.id]||g.base;S.marketPrices[g.id]=Math.max(8,Math.round(old*(.82+Math.random()*.37)))});note('На торговом рынке обновились цены: спрос и предложение изменились.')}
+function ownsSpecial(pi,key){return S.players[pi].owned.some(i=>spaces[i].special===key)}
+function specialLabel(s){return ({wisdom:'Дом мудрости · +25 д. при посещении',port:'Порт · +25% к торговой миссии',craft:'Ремесленный центр · рынки дешевле на 30%',granary:'Зернохранилища · +30% к ресурсам',culture:'Культурная столица · +3 репутации при посещении',silk:'Шёлковая торговля · +30% к ресурсам',pilgrimage:'Хиджаз · +4 репутации за благотворительность'})[s.special]||''}
+function ownedBy(p){return S.players[p].owned.length}
+function active(){return S.players[S.turn]}
+function currentLabel(){return S.turn===0?'Игрок 1':'Игрок 2'}
+function positions(){let a=[];for(let c=0;c<7;c++)a.push([0,c]);for(let r=1;r<7;r++)a.push([r,6]);for(let c=5;c>=0;c--)a.push([6,c]);for(let r=5;r>=1;r--)a.push([r,0]);return a}
+function citySvg(s,i){
+ const band=s.band||'#c4a75e';
+ // У каждого поля своя композиция: отдельный силуэт, а не общий шаблон с заменой цвета.
+ const art={
+ 'Дворец султана':`<path d="M12 49V25H20V18H26V25H34V18H40V25H48V49Z"/><path d="M8 25L16 16L24 25M24 25L32 16L40 25M36 25L44 16L52 25"/><path d="M25 49V36Q30 28 35 36V49Z" fill="#17231a"/><path d="M28 13Q30 5 32 13V18H28Z" fill="#e6cc8a"/>`,
+ 'Багдад':`<path d="M13 49V30H20V24H25V30H35V24H40V30H47V49Z"/><path d="M18 30Q18 17 24 17Q30 17 30 30Z"/><path d="M30 30Q30 13 37 13Q44 13 44 30Z"/><path d="M27 49V38Q30 32 33 38V49Z" fill="#17231a"/><path d="M37 13V6" stroke="#f1dda1" stroke-width="2"/><path d="M34 8Q37 4 40 8" fill="none" stroke="#f1dda1" stroke-width="1.5"/>`,
+ 'Караван-сарай':`<path d="M11 49V28L30 15L49 28V49Z"/><path d="M17 31H43V49H17Z" fill="#283629"/><path d="M24 49V36Q30 28 36 36V49Z"/><path d="M8 28L30 10L52 28" fill="none" stroke="#f0d69b" stroke-width="2"/><path d="M18 20L22 14L26 20M34 20L38 14L42 20" fill="none" stroke="#f0d69b"/>`,
+ 'Басра':`<path d="M13 45V29H23V20H37V29H47V45Z"/><path d="M23 20Q30 8 37 20Z"/><path d="M30 45V31" stroke="#17231a" stroke-width="4"/><path d="M7 49Q18 45 29 49T53 49M9 54Q20 50 31 54T51 54" fill="none" stroke="#81bac5" stroke-width="2"/><path d="M30 9V37M30 12L42 23H30" fill="none" stroke="#f1dda1" stroke-width="1.5"/>`,
+ 'Пошлина':`<path d="M16 18H44L41 49H19Z"/><path d="M13 18H47M20 13H40" stroke="#f1dda1" stroke-width="2"/><circle cx="30" cy="31" r="7" fill="#29362a"/><path d="M30 24V38M26 27H32Q35 27 33 30H27Q25 33 29 34H34" fill="none" stroke="#e6cc8a" stroke-width="1.5"/>`,
+ 'Дамаск':`<path d="M13 49V31H22V25H38V31H47V49Z"/><path d="M19 25Q19 13 30 13Q41 13 41 25Z"/><path d="M25 49V37Q30 30 35 37V49Z" fill="#17231a"/><path d="M10 17L15 12L20 17L15 22ZM40 17L45 12L50 17L45 22Z"/><path d="M30 7V13" stroke="#f1dda1" stroke-width="2"/>`,
+ 'Оазис':`<path d="M11 49Q30 44 49 49" fill="none" stroke="#c7ad6b" stroke-width="3"/><path d="M30 48V23M30 29Q14 28 13 17Q27 16 30 29M30 25Q31 10 44 9Q45 22 30 25M30 35Q17 31 17 24Q29 25 30 35" fill="#83aa69" stroke="#d3c17d" stroke-width="1.2"/><path d="M9 53Q19 49 29 53T51 53" fill="none" stroke="#81bac5" stroke-width="2"/>`,
+ 'Алеппо':`<path d="M13 49V32H20V23H27V32H33V20H40V29H47V49Z"/><path d="M10 32L23 19L29 26L37 14L50 29" fill="none" stroke="#e6cc8a" stroke-width="2"/><path d="M26 49V38Q30 32 34 38V49Z" fill="#17231a"/><path d="M18 36H22V41H18ZM39 34H43V39H39Z" fill="#17231a"/>`,
+ 'Крепость':`<path d="M11 49V20H18V26H24V20H36V26H42V20H49V49Z"/><path d="M8 20H21M22 20H38M39 20H52" stroke="#e6cc8a" stroke-width="2"/><path d="M25 49V35Q30 28 35 35V49Z" fill="#17231a"/><path d="M30 9L34 16H26Z" fill="#d9bd78"/>`,
+ 'Каир':`<path d="M12 49V36L30 11L48 36V49Z"/><path d="M20 49L30 25L40 49Z" fill="#27362a"/><path d="M6 53Q18 48 30 53T54 53" fill="none" stroke="#81bac5" stroke-width="2"/><path d="M30 11V4" stroke="#f1dda1" stroke-width="2"/>`,
+ 'Нил':`<path d="M10 15Q23 22 16 31T20 49M30 10Q43 18 34 30T39 51M47 15Q55 24 47 34T50 48" fill="none" stroke="#81bac5" stroke-width="4"/><path d="M9 51H51" stroke="#e6cc8a" stroke-width="1.5"/><path d="M20 20L25 16L29 20M38 39L43 35L47 39" fill="none" stroke="#d7c17d" stroke-width="1.5"/>`,
+ 'Александрия':`<path d="M20 49V23H40V49Z"/><path d="M16 23L30 12L44 23Z"/><path d="M25 23V14Q30 5 35 14V23Z"/><path d="M28 49V36H32V49Z" fill="#17231a"/><path d="M10 52Q30 47 50 52M8 56Q30 51 52 56" fill="none" stroke="#81bac5" stroke-width="2"/><path d="M30 5V1" stroke="#f1dda1" stroke-width="2"/>`,
+ 'Кордова':`<path d="M12 49V29H19V23H25V29H35V23H41V29H48V49Z"/><path d="M16 29Q16 14 23 14Q30 14 30 29ZM30 29Q30 10 38 10Q46 10 46 29Z"/><path d="M25 49V38Q30 31 35 38V49Z" fill="#17231a"/><path d="M30 4L32 9L38 9L33 13L35 19L30 15L25 19L27 13L22 9L28 9Z" fill="#f1dda1"/>`,
+ 'Совет учёных':`<path d="M17 13H40L44 18V48H17Z"/><path d="M40 13V19H44" fill="none" stroke="#e6cc8a" stroke-width="1.5"/><path d="M22 25H38M22 31H38M22 37H34" stroke="#e6cc8a" stroke-width="2"/><path d="M12 49H48" stroke="#e6cc8a" stroke-width="2"/>`,
+ 'Гранада':`<path d="M12 49V28L18 22L24 28V19L30 12L36 19V28L42 22L48 28V49Z"/><path d="M24 49V36Q30 28 36 36V49Z" fill="#17231a"/><path d="M8 49H52M16 16L20 11L24 16M36 16L40 11L44 16" fill="none" stroke="#e6cc8a" stroke-width="1.5"/>`,
+ 'Пустынный переход':`<path d="M7 48Q17 26 28 42Q38 20 53 48Z"/><path d="M11 50Q24 44 34 50T51 50" fill="none" stroke="#e7d39a" stroke-width="1.5"/><path d="M16 18L21 13L26 18L21 23ZM35 14L40 9L45 14L40 19Z" fill="#e6cc8a"/><path d="M30 25V37M26 31L30 25L34 31" fill="none" stroke="#f1dda1" stroke-width="1.5"/>`,
+ 'Самарканд':`<path d="M13 49V31H20V24H40V31H47V49Z"/><path d="M18 24Q18 10 30 10Q42 10 42 24Z"/><path d="M25 49V36Q30 28 35 36V49Z" fill="#17231a"/><path d="M30 10V4" stroke="#f1dda1" stroke-width="2"/><path d="M27 7Q30 2 33 7" fill="none" stroke="#f1dda1" stroke-width="1.5"/><path d="M9 32L15 26L21 32M39 32L45 26L51 32" fill="none" stroke="#e6cc8a"/>`,
+ 'Шёлковый путь':`<path d="M9 45Q18 29 27 40T49 34" fill="none" stroke="#e6cc8a" stroke-width="3"/><path d="M13 49Q22 33 31 44T51 38" fill="none" stroke="#a7c4c5" stroke-width="2"/><path d="M18 24L23 19L28 24L23 29ZM34 20L39 15L44 20L39 25Z" fill="#e6cc8a"/><circle cx="30" cy="34" r="4" fill="#d4ae64"/>`,
+ 'Бухара':`<path d="M13 49V29H20V24H40V29H47V49Z"/><path d="M19 24Q19 13 30 13Q41 13 41 24Z"/><path d="M23 24Q23 17 30 17Q37 17 37 24Z" fill="#27362a"/><path d="M26 49V38Q30 33 34 38V49Z" fill="#17231a"/><path d="M30 6V13" stroke="#f1dda1" stroke-width="2"/>`,
+ 'Дипломатия':`<path d="M11 25L24 17L30 23L36 17L49 25L43 32L36 28L30 34L24 28L17 32Z"/><path d="M15 36L23 43L29 37M45 36L37 43L31 37" fill="none" stroke="#e6cc8a" stroke-width="3"/><path d="M20 47H40" stroke="#e6cc8a" stroke-width="2"/>`,
+ 'Большой базар':`<path d="M11 49V28H49V49Z"/><path d="M8 28L13 16H47L52 28Z"/><path d="M15 17L19 27M25 17L27 27M35 17L33 27M45 17L41 27" stroke="#27362a" stroke-width="2"/><path d="M18 49V36H26V49M34 49V36H42V49" fill="#17231a"/><path d="M11 32H49" stroke="#e6cc8a" stroke-width="1.5"/>`,
+ 'Дом милосердия':`<path d="M13 49V28H47V49Z"/><path d="M9 28L30 12L51 28Z"/><path d="M26 49V37Q30 31 34 37V49Z" fill="#17231a"/><path d="M30 21V34" stroke="#f1dda1" stroke-width="2.5"/><path d="M25 26Q30 20 35 26" fill="none" stroke="#f1dda1" stroke-width="2"/><path d="M18 15L21 10L24 15M36 15L39 10L42 15" fill="none" stroke="#e6cc8a"/>`,
+ 'Путь паломников':`<path d="M14 49V24H46V49Z"/><path d="M10 24L30 12L50 24Z"/><path d="M22 31H38V45H22Z" fill="#17231a"/><path d="M25 34H35V41H25Z" fill="#d8b56e"/><path d="M30 12V5" stroke="#f1dda1" stroke-width="2"/><path d="M27 8Q30 3 33 8" fill="none" stroke="#f1dda1" stroke-width="1.5"/>`
+ };
+ const arch=art[s.name]||`<path d="M14 49V29L30 13L46 29V49Z"/><path d="M24 49V36Q30 28 36 36V49Z" fill="#17231a"/>`;
+ const addon=s.special==='port'?'<path d="M8 53Q30 47 52 53" fill="none" stroke="#81bac5" stroke-width="1.5"/>':s.special==='wisdom'?'<circle cx="47" cy="11" r="4" fill="#f1dda1"/>':s.special==='craft'?'<path d="M8 12L12 8L16 12L12 16ZM44 12L48 8L52 12L48 16Z" fill="#e9d49a"/>':s.special==='granary'?'<circle cx="12" cy="43" r="2" fill="#e7d39a"/><circle cx="48" cy="43" r="2" fill="#e7d39a"/>':s.special==='culture'?'<path d="M30 2L32 7L37 7L33 11L34 16L30 13L26 16L27 11L23 7L28 7Z" fill="#e9d49a"/>':s.special==='silk'?'<path d="M8 55Q20 47 30 54T52 53" fill="none" stroke="#a7c4c5" stroke-width="2"/>':s.special==='pilgrimage'?'<circle cx="48" cy="10" r="4" fill="#f1dda1"/>':'';
+ return `<svg viewBox="0 0 60 64" aria-hidden="true"><defs><linearGradient id="citygrad${i}" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f1dda1"/><stop offset="1" stop-color="${band}"/></linearGradient></defs><ellipse cx="30" cy="56" rx="22" ry="4" fill="#0b120d" opacity=".5"/><g stroke="#e6d39b" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" fill="url(#citygrad${i})">${arch}</g>${addon}<path d="M5 59H55" stroke="${band}" stroke-width="1.5" opacity=".8"/></svg>`;
+}
+function renderBoard(){
+ const board=$('board');board.innerHTML='';const pos=positions();
+ spaces.forEach((s,i)=>{let [r,c]=pos[i];const el=document.createElement('div');el.className='tile';el.style.gridRow=r+1;el.style.gridColumn=c+1;if(s.band)el.style.setProperty('--band',s.band);
+ const here=S.players.map((p,pi)=>p.pos===i?`<span class="minitoken ${pi?'blue':'gold'}">${pi?'◆':'♛'}</span>`:'').join('');
+ if(S.players.some((p,pi)=>p.pos===i&&pi===S.turn))el.classList.add('current');
+ if(S.owner[i]===0)el.classList.add('p1owned');if(S.owner[i]===1)el.classList.add('p2owned');
+ el.innerHTML=`${s.band?'<div class="band"></div>':''}<div class="owners">${here}</div><div class="ico">${citySvg(s,i)}</div><div class="nm">${s.name}</div><div class="price">${s.type==='land'?fmt(s.cost)+' д.':s.type==='tax'?'Сбор':s.type==='start'?'Столица':s.type==='event'?'Событие':s.type==='resource'?'Ресурс':''}</div>${S.levels[i]?`<div class="level">Рынки ${S.levels[i]}</div>`:''}`;
+ el.title=s.desc;el.addEventListener('click',()=>showSpace(i));board.appendChild(el);
+ });
+ const center=document.createElement('div');center.className='center';center.innerHTML=`
+ <svg class="map-art" viewBox="0 0 520 360" aria-hidden="true" focusable="false">
+  <defs><linearGradient id="mapGold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e7d39a"/><stop offset="1" stop-color="#c09a5d"/></linearGradient></defs>
+  <path d="M35 250Q90 210 125 236T210 224T300 244T395 212T485 230" fill="none" stroke="#b8c99d" stroke-width="5" stroke-linecap="round"/>
+  <path d="M30 260Q95 220 130 246T210 234T300 254T395 222T490 240" fill="none" stroke="#7eaeb1" stroke-width="2" stroke-linecap="round"/>
+  <path d="M52 110L90 60L120 96L148 46L181 105L210 73L244 120M340 100L374 54L399 91L427 66L470 120" fill="none" stroke="#e0cb8b" stroke-width="2"/>
+  <path d="M42 300Q120 270 170 294T280 286T385 296T475 278" fill="none" stroke="#d4b66c" stroke-width="1.5" stroke-dasharray="4 7"/>
+  <path d="M74 160Q130 122 176 164T275 162T365 140T452 166" fill="none" stroke="url(#mapGold)" stroke-width="2.5" stroke-dasharray="3 7"/>
+  <g fill="#e4cf91" stroke="#25382a" stroke-width="2"><circle cx="74" cy="160" r="7"/><circle cx="176" cy="164" r="7"/><circle cx="275" cy="162" r="7"/><circle cx="365" cy="140" r="7"/><circle cx="452" cy="166" r="7"/></g>
+  <g fill="#c5a35d" stroke="#e7d39a" stroke-width="1.3"><path d="M92 210v-18h7v-8h8v8h7v18z"/><path d="M99 184q4-14 8 0z"/><path d="M310 206v-21h8v-8h9v8h8v21z"/><path d="M316 177q6-17 12 0z"/><path d="M410 204v-17h7v-8h8v8h7v17z"/><path d="M416 179q5-13 10 0z"/></g>
+  <g fill="none" stroke="#e7d39a" stroke-width="1"><path d="M22 22h38M22 22v38M498 22h-38M498 22v38M22 338h38M22 338v-38M498 338h-38M498 338v-38"/><circle cx="260" cy="180" r="142" stroke-dasharray="2 9"/></g>
+ </svg>
+ <div class="center-content"><div class="crest-small">☾</div><div class="center-kicker">Пути · города · казна</div><h2>СУЛТАНАТ</h2><p class="center-desc">Свяжи города торговыми путями, развивай владения и приумножай богатство своей державы.</p><div class="players">${S.players.map((p,i)=>`<div class="playerchip ${S.turn===i?'active':''}"><b style="color:${i?'var(--p2)':'var(--p1)'}">${i?'◆':'♛'} ${p.name}</b>${fmt(p.cash)} динаров · ${p.owned.length} влад.</div>`).join('')}</div></div>`;
+ board.appendChild(center);
+}
+function renderStats(){
+ const p=active();$('turnStat').textContent=S.round;$('modeStat').textContent=S.mode==='online'?'Онлайн':S.mode==='local2'?'На двоих':'Против ИИ';$('goalStat').textContent='Казна';
+ $('roundPill').textContent='Раунд '+S.round;$('turnPill').textContent=currentLabel();$('playerName').textContent=p.name;$('playerHint').textContent=S.finished?'Партия завершена':!canAct()?'Ожидание хода соперника':S.rolled?'Завершите ход или продолжите действия':'Ваш ход: бросьте кости';
+ $('token').className='token'+(S.turn?' p2':'');$('token').textContent=S.turn?'🔹':'👑';$('cash').textContent=fmt(p.cash)+' д.';$('landCount').textContent=ownedBy(S.turn);$('income').textContent=fmt(income(S.turn))+' д.';$('rep').textContent=p.rep;
+ const allowed=canAct();$('rollBtn').disabled=S.rolled||S.finished||!allowed;$('endBtn').disabled=!S.rolled||S.finished||!allowed;$('upgradeBtn').disabled=!allowed||!p.owned.some(i=>(S.levels[i]||0)<3)||S.finished;$('charityBtn').disabled=!allowed||p.cash<60||S.finished;$('tradeBtn').disabled=!allowed||p.cash<90||S.finished;['marketBtn','routeBtn','dealBtn'].forEach(id=>{if($(id))$(id).disabled=!allowed||S.finished});$('onlineBtn').textContent=S.mode==='online'?(peerConn&&peerConn.open?'📱 Онлайн подключён':'📱 Настроить соединение'):'📱 Игра на двух телефонах';
+}
+function renderLog(){$('log').innerHTML=S.log.map(x=>`<div class="entry">${x}</div>`).join('')||'<div class="entry">Летопись ждёт первого хода.</div>'}
+function renderLands(){
+ const arr=active().owned;
+ $('lands').innerHTML=arr.length?arr.map(i=>{
+  const s=spaces[i],mortgaged=(S.mortgages||[]).includes(i);
+  return `<div class="prop" style="--propband:${s.band||'#b99a5a'}"><div class="ico">${citySvg(s,i)}</div><div class="desc"><b>${s.name}${mortgaged?' · В залоге':''}</b><small>${s.region}${specialLabel(s)?' · '+specialLabel(s):''}</small><div class="prop-meta"><span class="meta-chip">Цена <strong>${fmt(s.cost)} д.</strong></span><span class="meta-chip">Пошлина <strong>${fmt(rent(i))} д.</strong></span><span class="meta-chip">Рынки <strong>${S.levels[i]||0}/3</strong></span></div></div><button onclick="window.upgrade(${i})" ${S.levels[i]>=3||mortgaged?'disabled':''}>Рынок</button><button class="secondary" onclick="window.sellLand(${i})">Продать</button><button class="secondary" onclick="window.mortgageLand(${i})">${mortgaged?'Выкупить':'Залог'}</button></div>`
+ }).join(''):'<div class="entry">У этого правителя пока нет городов. Брось кости и приобрети первое владение.</div>';
+}
+function render(){renderBoard();renderStats();renderLog();renderLands();save()}
+function modal(title,body,buttons){$('modalRoot').innerHTML=`<div class="overlay" id="overlay"><div class="modal"><h2>${title}</h2><p>${body}</p><div class="row">${buttons}</div></div></div>`}
+function closeModal(){$('modalRoot').innerHTML=''}
+function showSpace(i){const s=spaces[i];let text=s.desc;if(s.type==='land'){if(S.owner[i]===undefined)text+=`<br><br><b>Цена: ${s.cost} динаров.</b> Базовая пошлина: ${s.rent}.`;else text+=`<br><br>Владелец: ${S.players[S.owner[i]].name}. Пошлина: ${rent(i)} динаров.`;if(specialLabel(s))text+=`<br><br><b>Уникальное свойство:</b> ${specialLabel(s)}.`}
+ modal(s.icon+' '+s.name,text,'<button class="secondary" onclick="window.closeModal()">Закрыть</button>')}
+window.closeModal=closeModal;
+function roll(){
+ if(!canAct()){toast('Сейчас ход другого игрока.');return}if(S.rolled||S.finished)return;S.rolled=true;const a=1+Math.floor(Math.random()*6),b=1+Math.floor(Math.random()*6),steps=a+b;S.lastRoll=[a,b];const p=active(),old=p.pos;p.pos=(p.pos+steps)%spaces.length;
+ note(`<b>${p.name}</b> выбросил ${a}+${b} и переместился на ${steps} клеток.`);
+ if(p.pos<old){p.cash+=120;p.rep=Math.min(100,p.rep+1);note(`${p.name} прошёл через столицу: +120 динаров.`)}
+ resolve(p.pos);render();
+}
+function resolve(i){
+ const s=spaces[i],p=active(),pi=S.turn;
+ if(s.type==='land'){
+  if(S.owner[i]===undefined){
+   if(p.cash>=s.cost)modal('Приобрести город — '+s.name,`${s.desc}<br><br><b>Цена: ${s.cost} динаров.</b> Покупка приносит пошлину с соперника. Если отказаться, соперник может забрать город на аукционе.`,`<button onclick="window.buy(${i})">Купить за ${s.cost}</button><button class="secondary" onclick="window.auction(${i})">Аукцион</button><button class="secondary" onclick="window.closeModal()">Пропустить</button>`);
+   else note(`${p.name} прибыл в ${s.name}, но средств на покупку не хватает.`);
+  }else if(S.owner[i]!==pi){const fee=rent(i);p.cash-=fee;S.players[S.owner[i]].cash+=fee;note(`${p.name} заплатил ${fee} динаров правителю города ${s.name}.`);checkBankruptcy(pi)}
+  else {let bonus=12+(S.levels[i]||0)*8;if(s.special==='wisdom')bonus+=25;p.cash+=bonus;if(s.special==='culture')p.rep=Math.min(100,p.rep+3);note(`${p.name} посетил собственный город ${s.name}: местные купцы внесли ${bonus} динаров.${s.special==='culture'?' Репутация +3.':''}`)}
+ }else if(s.type==='start'){p.cash+=60;note(`${p.name} остановился у дворца и получил 60 динаров из казны.`)}
+ else if(s.type==='tax'){p.cash-=s.amount;note(`${p.name} уплатил государственную пошлину ${s.amount} динаров.`);checkBankruptcy(pi)}
+ else if(s.type==='event'){let n=Math.random();if(n<.33){let v=100+Math.floor(Math.random()*90);p.cash+=v;note(`Караванная сделка удалась: ${p.name} получает ${v} динаров.`)}else if(n<.66){p.rep=Math.min(100,p.rep+5);p.cash+=35;note(`Совет учёных укрепил репутацию ${p.name}; +35 динаров.`)}else{p.cash-=45;note(`Караван задержан: ${p.name} теряет 45 динаров.`);checkBankruptcy(pi)}}
+ else if(s.type==='rest'){p.rep=Math.min(100,p.rep+4);p.cash+=20;note(`${p.name} отдохнул в оазисе: +20 динаров и +4 репутации.`)}
+ else if(s.type==='resource'){let v=75+Math.floor(Math.random()*55);if(ownsSpecial(pi,'granary'))v=Math.floor(v*1.3);if(ownsSpecial(pi,'silk'))v=Math.floor(v*1.3);p.cash+=v;note(`Торговый путь принёс ${p.name} ${v} динаров.${ownsSpecial(pi,'granary')||ownsSpecial(pi,'silk')?' Уникальные владения усилили доход.':''}`)}
+ else if(s.type==='hazard'){p.cash-=35;note(`Песчаная буря: ${p.name} потратил 35 динаров на караван.`);checkBankruptcy(pi)}
+ else if(s.type==='charity'){p.cash-=50;p.rep=Math.min(100,p.rep+8);note(`${p.name} поддержал дом милосердия: −50 динаров, +8 репутации.`);checkBankruptcy(pi)}
+}
+window.buy=i=>{if(!canAct()){toast('Сейчас ход другого игрока.');return}const p=active(),s=spaces[i];if(S.owner[i]!==undefined||p.cash<s.cost){closeModal();return}p.cash-=s.cost;p.owned.push(i);S.owner[i]=S.turn;note(`${p.name} приобрёл город <b>${s.name}</b> за ${s.cost} динаров.`);closeModal();render()};
+window.auction=i=>{
+ if(!canAct()){toast('Сейчас ход другого игрока.');return}const s=spaces[i],bid=Math.max(50,Math.floor(s.cost*.75)),other=1-S.turn;
+ closeModal();
+ if(S.players[other].cash>=bid){
+  modal('Аукцион: '+s.name,`${S.players[other].name} может купить город за ${bid} динаров — скидка за быструю сделку.`, `<button onclick="window.auctionBuy(${i},${other},${bid})">Купить на аукционе</button><button class="secondary" onclick="window.closeModal()">Оставить свободным</button>`);
+ }else{note(`Аукцион города ${s.name} не состоялся: у соперника недостаточно средств.`);render()}
+};
+window.auctionBuy=(i,pi,bid)=>{
+ if(!canAct()){toast('Сейчас ход другого игрока.');return}const s=spaces[i],p=S.players[pi];
+ if(S.owner[i]!==undefined||p.cash<bid){closeModal();return}
+ p.cash-=bid;p.owned.push(i);S.owner[i]=pi;
+ note(`${p.name} выиграл аукцион за город <b>${s.name}</b>, заплатив ${bid} динаров.`);
+ closeModal();render()
+};
+window.sellLand=i=>{
+ if(!canAct()){toast('Сейчас ход другого игрока.');return}const p=active();if(S.owner[i]!==S.turn)return;
+ const value=Math.floor(spaces[i].cost*.6)+(S.levels[i]||0)*35;
+ p.cash+=value;p.owned=p.owned.filter(k=>k!==i);delete S.owner[i];delete S.levels[i];
+ S.mortgages=(S.mortgages||[]).filter(k=>k!==i);
+ note(`${p.name} продал город ${spaces[i].name} государству за ${value} динаров.`);
+ render()
+};
+window.mortgageLand=i=>{
+ if(!canAct()){toast('Сейчас ход другого игрока.');return}const p=active();if(S.owner[i]!==S.turn)return;
+ S.mortgages=S.mortgages||[];
+ const at=S.mortgages.indexOf(i);
+ if(at>=0){
+  const fee=Math.floor(spaces[i].cost*.6);
+  if(p.cash<fee){toast('Недостаточно динаров, чтобы выкупить владение из залога.');return}
+  p.cash-=fee;S.mortgages.splice(at,1);note(`${p.name} выкупил ${spaces[i].name} из залога за ${fee} динаров.`);
+ }else{
+  const gain=Math.floor(spaces[i].cost*.4);p.cash+=gain;S.mortgages.push(i);note(`${p.name} заложил ${spaces[i].name} и получил ${gain} динаров. До выкупа город не приносит пошлину.`);
+ }
+ render()
+};
+function checkBankruptcy(pi){if(S.players[pi].cash<0){S.finished=true;const winner=1-pi;modal('Держава обанкротилась',`${S.players[pi].name} не смог оплатить обязательства. Победитель — ${S.players[winner].name}!`,'<button onclick="window.newGame()">Новая партия</button>')}}
+function endTurn(){if(!canAct()){toast('Сейчас ход другого игрока.');return}if(!S.rolled||S.finished)return;S.rolled=false;S.turn=1-S.turn;if(S.turn===0){S.round++;refreshMarket()}const incoming=S.turn;S.players[incoming].cash+=(S.routes||[]).filter(r=>r.owner===incoming).reduce((n,r)=>n+routeYield(r),0);if((S.routes||[]).some(r=>r.owner===incoming))note(`${S.players[incoming].name} получил доход от караванных маршрутов.`);if(S.mode==='ai'&&S.turn===1){render();setTimeout(aiTurn,500)}else{render();if(S.mode==='local2')modal('Передайте устройство',`Теперь ходит ${active().name}. Передайте устройство сопернику, затем продолжайте игру.`,'<button onclick="window.closeModal()">Готово</button>')}}
+function aiTurn(){if(S.finished)return;roll();setTimeout(()=>{if($('modalRoot').innerHTML.includes('Приобрести город')){let btn=$('modalRoot').querySelector('button');if(btn)btn.click()}setTimeout(()=>{closeModal();if(S.rolled)endTurn()},400)},300)}
+function upgrade(i){if(!canAct()){toast('Сейчас ход другого игрока.');return}const p=active();if(S.owner[i]!==S.turn||(S.levels[i]||0)>=3||(S.mortgages||[]).includes(i))return;const level=S.levels[i]||0,base=100+level*90,cost=spaces[i].special==='craft'?Math.floor(base*.7):base;if(p.cash<cost){toast('Недостаточно динаров для улучшения.');return}p.cash-=cost;S.levels[i]=level+1;note(`${p.name} построил рынок ${level+1}-го уровня в городе ${spaces[i].name} за ${cost} динаров. Пошлина увеличена.`);render()}
+window.upgrade=upgrade;
+function upgradeBest(){const p=active(),i=p.owned.find(i=>(S.levels[i]||0)<3);if(i===undefined){toast('Нет городов, доступных для улучшения.');return}upgrade(i)}
+function charity(){if(!canAct()){toast('Сейчас ход другого игрока.');return}const p=active();if(p.cash<60)return;p.cash-=60;const gain=10+(ownsSpecial(S.turn,'pilgrimage')?4:0);p.rep=Math.min(100,p.rep+gain);note(`${p.name} пожертвовал 60 динаров на благотворительность: репутация +${gain}.`);render()}
+function trade(){if(!canAct()){toast('Сейчас ход другого игрока.');return}const p=active();if(p.cash<90)return;p.cash-=90;let gain=140+Math.floor(Math.random()*100);if(ownsSpecial(S.turn,'port'))gain=Math.floor(gain*1.25);p.cash+=gain;p.rep=Math.min(100,p.rep+2);note(`${p.name} отправил караван и получил ${gain} динаров обратно. Чистая прибыль: ${gain-90}.${ownsSpecial(S.turn,'port')?' Порт увеличил доход на 25%.':''}`);render()}
+
+function dealModal(){
+ if(!canAct()){toast('Сейчас ход другого игрока.');return}const me=S.turn,other=1-me,own=S.players[me].owned,enemy=S.players[other].owned;
+ if(!own.length&&!enemy.length){toast('Сначала кому-то нужно приобрести город.');return}
+ const opts=a=>a.length?a.map(i=>`<option value="${i}">${spaces[i].name}</option>`).join(''):'<option value="-1">Нет доступных городов</option>';
+ const form=`<div style="display:grid;gap:6px"><label>Ваш город для обмена<select id="dealGiveLand">${opts(own)}</select></label><label>Город соперника<select id="dealWantLand">${opts(enemy)}</select></label><label>Вы доплачиваете (динары)<input id="dealGiveCash" type="number" min="0" max="${Math.max(0,active().cash)}" value="0"></label><label>Соперник доплачивает (динары)<input id="dealWantCash" type="number" min="0" value="0"></label></div>`;
+ modal('Дипломатическая сделка',`Предложение от ${S.players[me].name} игроку ${S.players[other].name}. Выберите города и при необходимости укажите денежную доплату.<br><br>${form}`,`<button onclick="window.proposeDeal()">Предложить сделку</button><button class="secondary" onclick="window.closeModal()">Отмена</button>`);
+}
+window.proposeDeal=()=>{
+ const me=S.turn,other=1-me,give=Number(document.getElementById('dealGiveLand')?.value??-1),want=Number(document.getElementById('dealWantLand')?.value??-1),giveCash=Math.floor(Number(document.getElementById('dealGiveCash')?.value)||0),wantCash=Math.floor(Number(document.getElementById('dealWantCash')?.value)||0);
+ if(giveCash<0||wantCash<0||giveCash>S.players[me].cash){toast('Проверьте суммы: у вас недостаточно средств.');return}
+ if((give>=0&&S.owner[give]!==me)||(want>=0&&S.owner[want]!==other)){toast('Владение уже изменилось. Откройте сделку заново.');return}
+ if(give<0&&want<0&&giveCash===0&&wantCash===0){toast('В сделке должно быть хотя бы одно условие.');return}
+ if(wantCash>S.players[other].cash){toast('Сопернику не хватит средств для этой сделки.');return}
+ modal('Подтвердить сделку',`${S.players[other].name}, согласны на обмен? ${give>=0?`${S.players[me].name} передаёт город ${spaces[give].name}. `:''}${want>=0?`Вы передаёте город ${spaces[want].name}. `:''}${giveCash?`${S.players[me].name} доплачивает ${giveCash} динаров. `:''}${wantCash?`Вы доплачиваете ${wantCash} динаров.`:''}`,`<button onclick="window.acceptDeal(${me},${give},${want},${giveCash},${wantCash})">Принять сделку</button><button class="secondary" onclick="window.closeModal()">Отказаться</button>`);
+};
+window.acceptDeal=(me,give,want,giveCash,wantCash)=>{
+ const other=1-me;
+ if((give>=0&&S.owner[give]!==me)||(want>=0&&S.owner[want]!==other)){closeModal();toast('Сделка отменена: владение уже изменилось.');return}
+ if(S.players[me].cash<giveCash||S.players[other].cash<wantCash){closeModal();toast('Сделка отменена: не хватает денег.');return}
+ if(give>=0){S.players[me].owned=S.players[me].owned.filter(i=>i!==give);S.players[other].owned.push(give);S.owner[give]=other}
+ if(want>=0){S.players[other].owned=S.players[other].owned.filter(i=>i!==want);S.players[me].owned.push(want);S.owner[want]=me}
+ S.players[me].cash+=wantCash-giveCash;S.players[other].cash+=giveCash-wantCash;
+ note(`Дипломатическая сделка завершена: ${S.players[me].name} и ${S.players[other].name} обменялись условиями и укрепили торговые связи.`);closeModal();render();
+};
+window.dealModal=dealModal;
+function marketModal(){if(!canAct()){toast('Сейчас ход другого игрока.');return}const p=active();const rows=goods.map(g=>{const price=S.marketPrices[g.id]||g.base,qty=p.goods[g.id]||0;return `<div class="entry" style="display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;margin-bottom:7px"><div><b>${g.name}</b><br><small>Цена: ${fmt(price)} д. · В запасе: ${qty}</small></div><div style="display:flex;gap:4px;flex-wrap:wrap"><button onclick="window.marketTrade('buy','${g.id}')">Купить</button><button class="secondary" onclick="window.marketTrade('sell','${g.id}')">Продать</button></div></div>`}).join('');modal('Торговый рынок',`<div>Цены обновляются в начале каждого нового раунда. Покупай товары в расчёте на рост стоимости или продавай запас, чтобы пополнить казну.</div><div style="margin-top:10px">${rows}</div>`,'<button class="secondary" onclick="window.closeModal()">Закрыть рынок</button>')}
+window.marketTrade=(action,id)=>{if(!canAct()){toast('Сейчас ход другого игрока.');return}const g=goods.find(x=>x.id===id),p=active(),price=S.marketPrices[id]||g.base,owned=p.goods[id]||0;const raw=prompt(`${action==='buy'?'Купить':'Продать'}: ${g.name}. Текущая цена ${price} динаров за единицу. Количество:`, '1');if(raw===null)return;const q=Math.floor(Number(raw));if(!Number.isFinite(q)||q<1||q>99){toast('Укажи количество от 1 до 99.');return}if(action==='buy'){let unit=price;if(id==='silk'&&ownsSpecial(S.turn,'silk'))unit=Math.floor(unit*.9);const total=unit*q;if(p.cash<total){toast('В казне недостаточно динаров.');return}p.cash-=total;p.goods[id]=(p.goods[id]||0)+q;note(`${p.name} купил ${q} ед. товара «${g.name}» за ${total} динаров.`)}else{if(owned<q){toast('В запасе недостаточно товара.');return}let unit=price;if((id==='spice'||id==='silk')&&ownsSpecial(S.turn,'port'))unit=Math.floor(unit*1.1);const total=unit*q;p.cash+=total;p.goods[id]=owned-q;note(`${p.name} продал ${q} ед. товара «${g.name}» за ${total} динаров.`)}marketModal();render()};
+function routeModal(){if(!canAct()){toast('Сейчас ход другого игрока.');return}const own=active().owned;if(own.length<2){toast('Нужно владеть минимум двумя городами, чтобы открыть маршрут.');return}const opts=own.map(i=>`<option value="${i}">${spaces[i].name}</option>`).join('');modal('Открыть караванный маршрут',`<div>Соедини два своих города. Создание стоит 100 динаров. Каждый раз, когда начинается твой ход, маршрут приносит стабильный доход; порты и развитые рынки повышают прибыль.<label>Город отправления<select id="routeFrom">${opts}</select></label><label>Город назначения<select id="routeTo">${opts}</select></label></div>`,'<button onclick="window.createRoute()">Открыть маршрут · 100 д.</button><button class="secondary" onclick="window.closeModal()">Отмена</button>')}
+window.createRoute=()=>{if(!canAct())return;const from=Number($('routeFrom')?.value),to=Number($('routeTo')?.value),p=active();if(from===to){toast('Выбери два разных города.');return}if(S.owner[from]!==S.turn||S.owner[to]!==S.turn){toast('Оба города должны принадлежать тебе.');return}if((S.routes||[]).some(r=>r.owner===S.turn&&((r.from===from&&r.to===to)||(r.from===to&&r.to===from)))){toast('Этот маршрут уже открыт.');return}if(p.cash<100){toast('Недостаточно средств.');return}p.cash-=100;S.routes=S.routes||[];S.routes.push({owner:S.turn,from,to});note(`${p.name} открыл караванный маршрут ${spaces[from].name} — ${spaces[to].name}. Прогноз дохода: ${routeYield(S.routes[S.routes.length-1])} динаров за ход.`);closeModal();render()};
+function onlineModal(){const code=roomCode||'';modal('Игра на двух телефонах',`<div>Оба игрока открывают эту страницу на своих телефонах. Для соединения нужен интернет; создайте комнату на одном устройстве и введите её код на втором.<label>Ваше имя<input id="onlineName" maxlength="18" value="${onlineRole===1?'Игрок 2':'Игрок 1'}" placeholder="Например, Али"></label><label>Код комнаты для подключения<input id="joinCode" maxlength="6" inputmode="numeric" value="${code}" placeholder="6 цифр"></label><div style="font-size:11px;color:#a7b39f;margin-top:5px">Важно: сетевой режим работает только на опубликованной странице HTTPS, не из локального файла или предпросмотра Telegram. Нужен доступ к серверу PeerJS и поддержка WebRTC.</div></div>`,'<button onclick="window.createOnlineRoom()">Создать комнату</button><button class="secondary" onclick="window.joinOnlineRoom()">Подключиться по коду</button><button class="secondary" onclick="window.closeModal()">Закрыть</button>')}
+function setupPeer(){if(!window.Peer){toast('Не загрузился PeerJS. Открой опубликованную HTTPS-страницу и проверь интернет.');return false}if(location.protocol!=='https:'&&location.protocol!=='http:'){toast('Сетевая игра не работает из локального файла/предпросмотра Telegram. Сначала опубликуй index.html на HTTPS-хостинге.');return false}return true}
+function peerCloudOptions(){return {host:'0.peerjs.com',port:443,path:'/',secure:true,debug:1,config:{iceServers:[{urls:'stun:stun.l.google.com:19302'},{urls:'stun:stun1.l.google.com:19302'}]}}}
+function peerErrorText(e,joining=false){const t=e&&e.type||'';if(t==='server-error'||t==='socket-error'||t==='socket-closed')return 'Сервер PeerJS недоступен или соединение заблокировано. Открой игру по HTTPS и попробуй другую сеть.';if(t==='network')return 'Нет связи с сервером сигнализации. Проверь интернет или VPN.';if(t==='unavailable-id')return 'Код комнаты уже занят. Создай новую комнату.';if(t==='peer-unavailable')return 'Комната не найдена или её создатель отключился. Создай новую комнату.';if(t==='browser-incompatible')return 'Этот браузер не поддерживает нужные функции WebRTC. Открой игру в Chrome.';return (joining?'Не удалось подключиться: ':'Ошибка сети: ')+(t||'проверь интернет и HTTPS-хостинг')}
+
+window.createOnlineRoom=()=>{if(!setupPeer())return;const name=($('onlineName')?.value||'Игрок 1').trim().slice(0,18)||'Игрок 1';const code=String(Math.floor(100000+Math.random()*900000));if(peer){try{peer.destroy()}catch(e){}}peerConn=null;peer=new Peer('sultanat-'+code,peerCloudOptions());roomCode=code;onlineRole=0;localStorage.setItem('sultanatOnlineRole','0');localStorage.setItem('sultanatRoomCode',code);peer.on('open',()=>{S=defaultState();S.mode='online';S.players[0].name=name;S.players[1].name='Игрок 2';S.log.unshift('Комната создана. Ожидание второго правителя…');render();modal('Комната создана',`Передай этот код второму игроку: <div style="font-size:30px;font-weight:800;letter-spacing:6px;color:#f3dca0;text-align:center;padding:12px">${code}</div>Откройте игру на втором телефоне, нажмите «Игра на двух телефонах» и введите код.`,'<button onclick="window.closeModal()">Ждать игрока</button>')});peer.on('connection',conn=>{if(peerConn&&peerConn.open){conn.close();return}peerConn=conn;conn.on('open',()=>{conn.send({type:'state',state:S});toast('Второй игрок подключился!')});conn.on('data',data=>{if(data&&data.type==='hello'){S.players[1].name=String(data.name||'Игрок 2').slice(0,18);note(`${S.players[1].name} подключился к партии.`);render()}else if(data&&data.type==='state'&&data.state&&data.state.mode==='online'){applyingRemote=true;S=data.state;save();render();applyingRemote=false}});conn.on('close',()=>toast('Соединение со вторым игроком прервано.'))});peer.on('error',e=>toast(peerErrorText(e)))};
+window.joinOnlineRoom=()=>{if(!setupPeer())return;const name=($('onlineName')?.value||'Игрок 2').trim().slice(0,18)||'Игрок 2',code=String($('joinCode')?.value||'').replace(/\D/g,'');if(code.length!==6){toast('Введи шестизначный код комнаты.');return}if(peer){try{peer.destroy()}catch(e){}}peer=new Peer(undefined,peerCloudOptions());roomCode=code;onlineRole=1;localStorage.setItem('sultanatOnlineRole','1');localStorage.setItem('sultanatRoomCode',code);peer.on('open',()=>{peerConn=peer.connect('sultanat-'+code,{reliable:true});peerConn.on('open',()=>{closeModal();peerConn.send({type:'hello',name});toast('Подключение установлено. Синхронизация партии…')});peerConn.on('data',data=>{if(data&&data.type==='state'&&data.state&&data.state.mode==='online'){applyingRemote=true;S=data.state;save();render();applyingRemote=false}});peerConn.on('error',()=>toast('Не удалось подключиться. Проверь код комнаты.'));peerConn.on('close',()=>toast('Связь с комнатой потеряна.'))});peer.on('error',e=>toast(peerErrorText(e,true)))};
+function newGame(){if(S.mode==='online'&&!canAct()){toast('Перезапустить онлайн-партию может только игрок, чей сейчас ход.');return}const online=S.mode==='online',names=S.players.map(p=>p.name);S=defaultState();if(online){S.mode='online';S.players[0].name=names[0];S.players[1].name=names[1]}closeModal();note('Началась новая партия. Две державы вступают в борьбу за торговые пути.');render()}
+window.newGame=newGame;
+$('rollBtn').addEventListener('click',roll);$('endBtn').addEventListener('click',endTurn);$('upgradeBtn').addEventListener('click',upgradeBest);$('charityBtn').addEventListener('click',charity);$('tradeBtn').addEventListener('click',trade);$('marketBtn').addEventListener('click',marketModal);$('routeBtn').addEventListener('click',routeModal);$('dealBtn').addEventListener('click',dealModal);$('onlineBtn').addEventListener('click',onlineModal);
+$('newBtn').addEventListener('click',()=>modal('Начать новую партию?','Текущий прогресс этой партии будет сброшен.','<button class="danger" onclick="window.newGame()">Начать заново</button><button class="secondary" onclick="window.closeModal()">Отмена</button>'));
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t===b));['log','lands','rules'].forEach(t=>$(t+'View').classList.toggle('hidden',t!==b.dataset.tab))}));
+function toast(t){let e=$('toast');if(!e){e=document.createElement('div');e.id='toast';e.className='toast';document.body.appendChild(e)}e.textContent=t;clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>e.remove(),2200)}
+if(!S.log.length)S.log.push('Добро пожаловать в Султанат. Игрок 1 начинает партию.');
+render();
+})();
+</script></body></html>
